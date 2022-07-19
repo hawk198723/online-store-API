@@ -25,14 +25,6 @@
       "status": "available"
     },
     {
-      "id": 4,
-      "name": "Nike Air Foamposite One",
-      "image": "/images/4.jpg",
-      "tags": "84 Colors",
-      "price": "73148",
-      "status": "available"
-    },
-    {
       "id": 5,
       "name": "adidas Harden Vol.3",
       "image": "/images/5.jpg",
@@ -95,32 +87,48 @@
       "tags": "",
       "image": "/images/12.jpg",
       "id": 12
-    },
-    {
-      "id": 13,
-      "name": "Nike Kyrie Flytrap --- 111111",
-      "price": "44444",
-      "tags": "warm, sports",
-      "image": "/images/11.jpg",
-      "status": "unavailable"
     }
   ],
   "carts": [
+    {
+      "productId": 6,
+      "name": "Nike Zoom Kobe 1",
+      "image": "/images/6.jpg",
+      "price": "80391",
+      "amount": 1,
+      "id": 1
+    },
     {
       "productId": 7,
       "name": "Nike Hyperdunk X(2018)",
       "image": "/images/7.jpg",
       "price": "54600",
-      "amount": 2,
-      "id": 1
+      "amount": 4,
+      "id": 2
+    },
+    {
+      "productId": 8,
+      "name": "Nike KD 12",
+      "image": "/images/8.jpg",
+      "price": "81800",
+      "amount": 1,
+      "id": 3
+    },
+    {
+      "productId": 9,
+      "name": "adidas D.O.N. Issue #1",
+      "image": "/images/9.jpg",
+      "price": "38800",
+      "amount": 3,
+      "id": 4
     },
     {
       "productId": 1,
       "name": "Air Jordan 4",
       "image": "/images/1.jpg",
       "price": "59440",
-      "amount": 1,
-      "id": 2
+      "amount": 7,
+      "id": 5
     }
   ]
 }

@@ -39,13 +39,11 @@ server.post("/auth/login", (req, res) => {
     const { nickname, type } = user;
     //jwt
     const jwToken = createToken({ nickname, type, email });
-    res.status(200).json(jwToken);
-    return;
+    return res.status(200).json(jwToken);
   } else {
     const status = 401;
     const message = "incorrect email or password";
-    res.status(status).json({ status, message });
-    return;
+    return res.status(status).json({ status, message });
   }
 });
 
@@ -55,8 +53,7 @@ server.post("/auth/register", (req, res) => {
   if (isAuthenticated({ email, password })) {
     const status = 401;
     const message = "Email and Password already exist";
-    res.status(status).json({ status, message });
-    return;
+    return res.status(status).json({ status, message });
   }
 
   //2
@@ -64,8 +61,7 @@ server.post("/auth/register", (req, res) => {
     if (err) {
       const status = 401;
       const message = err;
-      res.status(status).json({ status, message });
-      return;
+      return res.status(status).json({ status, message });
     }
     //get current user data
     const data = JSON.parse(_data.toString());
@@ -89,7 +85,6 @@ server.post("/auth/register", (req, res) => {
   //create token for new user
   const jwToken = createToken({ nickname, type, email });
   res.status(200).json(jwToken);
-  return;
 });
 
 server.use(router);

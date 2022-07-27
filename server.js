@@ -72,7 +72,7 @@ server.post("/auth/register", (req, res) => {
     fs.writeFile(
       path.join(__dirname, "users.json"),
       JSON.stringify(data),
-      (err) => {
+      (err, result) => {
         if (err) {
           const status = 401;
           const message = err;
@@ -86,6 +86,39 @@ server.post("/auth/register", (req, res) => {
   const jwToken = createToken({ nickname, type, email });
   res.status(200).json(jwToken);
 });
+// shopping cart API access authorization
+server.use("/carts", (req, res, next) => {
+  if (
+    req.header.authorization === undefined ||
+    req.headers.authorization.split(" ")[0] !== "Bearer"
+  ) {
+    const status = 401;
+    const message = "Error in authorization format";
+    res.status(status).json({ status, message });
+  }
+  try {
+    const verifyTokenResult = verifyToken(
+      req.headers.authorization.split(" ")[1]
+    );
+    if (verifyTokenResult instanceof Error) {
+      const status = 401;
+      const message = "Access token not provided";
+      res.status(status).json({ status, message });
+      return;
+    }
+    next();
+  } catch (err) {
+    const status = 401;
+    const message = "Error token is revoked";
+    res.status(status).json({ status, message });
+  }
+});
+//verify the token
+const verifyToken = (token) => {
+  return jwt.verify(token, SECRET, (err, decode) =>
+    decode !== undefined ? decode : err
+  );
+};
 
 server.use(router);
 server.listen(3003, () => {
